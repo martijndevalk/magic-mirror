@@ -1,9 +1,9 @@
 import React from 'react';
 import firebase from 'firebase';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
   const config = {
     apiKey: "AIzaSyALnYw32OjvLA5JJmXZtQclC7XgDXr0c7w",
     authDomain: "magic-mirror-172df.firebaseapp.com",
@@ -16,13 +16,9 @@ function App() {
   };
 
   firebase.initializeApp(config);
+  var smilingRef = firebase.database().ref('message_list/-M1jqFxvAlteRcZQDEtB');
 
-  // Get a reference to the database service
-  var database = firebase.database();
-
-  var smilingRef = database.ref('message_list/M1jqFxvAlteRcZQDEtB');
-
-  smilingRef.on('smiling', function(snapshot) {
+  smilingRef.on('value', function(snapshot) {
     console.log(snapshot.val());
   });
 
